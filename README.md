@@ -1,7 +1,7 @@
 # Product Order
 
 ## Project Description
-This project is the development of an Product Order system using React for Frontend and Laravel for Backend. This module is designed to allow users to see, create, edit, and delete orders.
+This project is the development of an Product Order system using React for Frontend and Laravel for Backend. This module is designed to allow users to read, create, update, and delete orders. The database is using Header and Detail table concept to perform normalization in SQL. With normalization, it can reducing data redundancy.
 ## API Reference
 
 #### Gets all orders
