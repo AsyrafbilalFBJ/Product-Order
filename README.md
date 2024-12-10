@@ -1,41 +1,100 @@
-# Invoice Module for Point of Sales System
+# Product Order
 
 ## Project Description
-This project is the development of an invoice module for a web-based Point of Sales (POS) system using React. This module is designed to allow users to create, manage, and organize invoices with pagination features to enhance the user experience in navigating the invoice list.
+This project is the development of an Product Order system using React for Frontend and Laravel for Backend. This module is designed to allow users to see, create, edit, and delete orders.
+## API Reference
 
-## Feature
-- **Frontend**: 3 pages(Dashboard, Create Invoice, Invoices)
-    - Dashboard: show Revenue Graph
-    - Create Invoice: user can create invoice
-    - Invoices: show invoices with detail
+#### Gets all orders
 
-- **Backend**: 6 endpoints(get, Create Invoice, Invoices)
-    - GET "/invoices": Gets a list of all invoices
-    - GET "/invoices/reports/:graph": Gets a report based on a given graph parameter(daily, weekly, monthly)
-    - GET "/invoices/:id": Gets details of a particular invoice based on a given ID
-    - POST "/invoice": Creates a new invoice
-    - GET "/products": Gets a list of all available products
-    - GET "/products-sold/:id": Gets a list of products that have been sold based on an invoice number
+```http
+  GET /api/orders
+```
 
-## Instalasi
-1. Clone repository:
-   ```bash
-   git clone https://github.com/AsyrafbilalFBJ/Invoice-App.git
-   
-## For Frontend
-2. Change directory ke Frontend:
-   ```bash
-   cd invoice-app
+#### Get an order by id
 
-## For Backend
-2. Change directory ke Frontend:
-   ```bash
-   cd invoice-app-be
+```http
+  GET /api/orders/:id
+```
 
-3. Install depedencies:
-   ```bash
+#### Creates an order
+
+```http
+  POST /api/orders
+```
+    example:
+    {
+        "customer_id": 1,
+    		"order_date": "2024-12-10",
+        "order_details": [
+            { 
+    					"product_id": 2, 
+    					"quantity": 12
+    				},
+            { 
+    					"product_id": 2, 
+    					"quantity": 12
+    				}
+        ]
+    }
+
+#### Updates an order by id
+```http
+  PUT /api/orders/:id
+```
+    example:
+    {
+        "order_date": "2024-12-07",
+        "status": "completed",
+        "customer_id": 2,
+        "order_details": [
+            {
+                "product_id": 1,
+                "order_detail_id": 6,
+                "quantity": 10
+            },
+            {
+                "product_id": 2,
+                "order_detail_id": 7,
+                "quantity": 10
+            }
+        ]
+    }
+    
+#### Delete an order by id
+```http
+  DELETE /api/orders/:id
+```
+## Installation
+
+Clone repository:
+
+```bash
+   git clone https://github.com/AsyrafbilalFBJ/Product-Order.git
+```
+    
+For Frontend
+```bash
+   cd fe
    npm install
-
-4. Run Project:
-   ```bash
    npm run dev
+```
+
+For Backend
+```bash
+   cd be
+```
+   create database named {database_name}
+   
+   duplicate .env.example remane it with .env and edit the DB_DATABASE value with {database_name}
+```bash
+   composer install
+   php artisan migrate
+   php artisan db:seed --class=CustomerSeeder
+   php artisan db:seed --class=OrderSeeder
+   php artisan db:seed --class=ProductSeeder
+   php artisan serve
+```
+
+## Appendix
+
+run locally in your browser with url from Frontend, by default is http://localhost:5173/
